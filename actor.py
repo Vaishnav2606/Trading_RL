@@ -17,6 +17,7 @@ class Actor:
 
     def env_reset(self):
         self.state = (self.env.reset())
+        self.local_memory = []
         
 
 
@@ -77,6 +78,7 @@ class Actor:
         self.local_memory.append([self.state, action, reward, next_state, done])
         if len(self.local_memory) >= self.batch_size:
             minibatch = self.local_memory[-self.batch_size:]
+            self.local_memory.pop(0)
             TD = self.compute_TD(minibatch)
             TD += self.replay_memory.e
             clipped_error = np.minimum(TD, self.replay_memory.absolute_error_upper)

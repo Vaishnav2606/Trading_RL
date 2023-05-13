@@ -77,7 +77,7 @@ env = MyStocksEnv(df=stock_ind_data, frame_bound=(timesteps, stock_ind_data.shap
 #training
 episodes = 10
 state = np.array(env.reset())
-learner = Learner(state_shape = state.shape, action_shape = env.action_space.n, memory_size=100, ddqn_flag=True)
+learner = Learner(state_shape = state.shape, action_shape = env.action_space.n, memory_size=250, ddqn_flag=True)
 actors_n = 4
 actors = build_actors(df=stock_ind_data, batch_size=timesteps, learner=learner, n=actors_n, test_n=test_n)
 
