@@ -75,7 +75,7 @@ class Actor:
         action = self.get_action(self.state)
         next_state, reward, done, info = self.env.step(action)
         next_state = np.array(next_state)
-        self.local_memory.append([self.state, action, reward, next_state, done])
+        self.local_memory.append([np.array(self.state), action, reward, next_state, done])
         if len(self.local_memory) >= self.batch_size:
             minibatch = self.local_memory[-self.batch_size:]
             self.local_memory.pop(0)
